@@ -1,0 +1,14 @@
+file_format: "1"
+id: lotus_ble
+name: LotusBLE
+type: shield
+url: https://github.com/TweetyDaBird/Lotus_ble
+requires: [e73_nrf52840]
+exposes: [i2c_oled]
+features:
+  - keys
+  - display
+  - encoder
+siblings:
+  - lotus_ble_left
+  - lotus_ble_right

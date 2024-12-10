@@ -1,0 +1,20 @@
+# Lotus58 BLE board configuration
+
+# Copyright (c) 2022 The ZMK Contributors
+# SPDX-License-Identifier: MIT
+
+config BOARD_LOTUS58_BLE
+	bool "lotus58 ble"
+	depends on SOC_NRF52840_QIAA
+
+config BOARD_LOTUS58_BLE_RIGHT
+	bool "lotus58 right"
+	depends on SOC_NRF52840_QIAA
+
+config BOARD_LOTUS58_BLE_LEFT
+	bool "lotus58 left"
+	depends on SOC_NRF52840_QIAA
+
+config BOARD_LOTUS58_BLE_RESET
+	bool "lotus58 reset"
+	depends on SOC_NRF52840_QIAA

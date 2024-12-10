@@ -1,0 +1,14 @@
+identifier: lotus58_ble
+name: Lotus58 BLE
+type: mcu
+arch: arm
+toolchain:
+  - zephyr
+  - gnuarmemb
+  - xtools
+supported:
+  - usb_device
+  - ble
+  - ieee802154
+  - watchdog
+
