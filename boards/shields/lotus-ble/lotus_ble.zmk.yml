@@ -3,7 +3,10 @@ id: lotus_ble
 name: LotusBLE
 type: shield
 url: https://github.com/TweetyDaBird/Lotus_ble
-requires: [e73_nrf52840]
+requires:
+  - gpio0
+  - gpio1
+  - spi0
 exposes: [i2c_oled]
 features:
   - keys

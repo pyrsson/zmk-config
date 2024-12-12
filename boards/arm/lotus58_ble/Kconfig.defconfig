@@ -3,16 +3,24 @@
  
 if BOARD_LOTUS58_BLE_LEFT
 
+config ZMK_KEYBOARD_NAME
+	default "Lotus BLE"
+
 config ZMK_SPLIT_BLE_ROLE_CENTRAL
 	default y
 
 endif
 
+if BOARD_LOTUS58_BLE_LEFT || BOARD_LOTUS58_BLE_RIGHT
+
+config BOARD
+  default "lotus58_ble"
+
+config BT_CTLR
+	default BT
+
 config ZMK_SPLIT
 	default y
-
-config ZMK_KEYBOARD_NAME
-	default "Lotus BLE"
 
 if USB
 
@@ -24,11 +32,14 @@ config USB_DEVICE_STACK
 
 endif # USB
 
-config BT_CTLR
-	default BT
+if ZMK_DISPLAY
 
-config ZMK_BLE
-	default y
+config SPI
+    default y
 
-config ZMK_USB
-	default y
+config ZMK_DISPLAY_BLANK_ON_IDLE
+    default n
+
+endif # ZMK_DISPLAY
+
+endif # BOARD_LOTUS58_BLE_LEFT || BOARD_LOTUS58_BLE_RIGHT

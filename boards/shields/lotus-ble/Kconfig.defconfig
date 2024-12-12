@@ -16,18 +16,6 @@ if SHIELD_LOTUS_BLE_LEFT || SHIELD_LOTUS_BLE_RIGHT
 config ZMK_SPLIT
     default y
 
-config BT_CTLR
-    default BT
-
-config ZMK_EXT_POWER
-    default y
-
-config ZMK_BLE
-	default y
-
-config ZMK_USB
-	default y
-
 if ZMK_DISPLAY
 
 config SPI
@@ -58,4 +46,4 @@ endchoice
 
 endif # LVGL
 
-endif
+endif # SHIELD_LOTUS_BLE_LEFT || SHIELD_LOTUS_BLE_RIGHT
