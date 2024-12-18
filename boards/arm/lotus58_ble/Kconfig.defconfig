@@ -37,6 +37,9 @@ if ZMK_DISPLAY
 config SPI
     default y
 
+config SPI_NRFX
+    default y
+
 config DISPLAY
     default y
 

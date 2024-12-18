@@ -19,7 +19,5 @@
 #
 ---
 include:
-  - board: nice_nano_v2
-    shield: lotus58_left
-  - board: nice_nano_v2
-    shield: lotus58_right
+  - board: lotus58_ble_left
+  - board: lotus58_ble_right
