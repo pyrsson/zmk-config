@@ -6,16 +6,16 @@
 
 #include "lotus58_ble.dtsi"
 
-// &kscan0 {
-//   gpios
-//     = <&gpio0 28 GPIO_ACTIVE_HIGH> // pin 1
-//     , <&gpio0 3  GPIO_ACTIVE_HIGH> // pin 2
-//     , <&gpio0 9  GPIO_ACTIVE_HIGH> // pin 3
-//     , <&gpio0 10 GPIO_ACTIVE_HIGH> // pin 4
-//     , <&gpio0 24 GPIO_ACTIVE_HIGH> // pin 5
-//     , <&gpio0 2  GPIO_ACTIVE_HIGH> // pin 0
-//     ;
-// };
+&kscan0 {
+  gpios
+    = <&gpio0 28 GPIO_ACTIVE_LOW> // pin 1
+    , <&gpio0 3  GPIO_ACTIVE_LOW> // pin 2
+    , <&gpio0 9  GPIO_ACTIVE_LOW> // pin 3
+    , <&gpio0 10 GPIO_ACTIVE_LOW> // pin 4
+    , <&gpio0 24 GPIO_ACTIVE_LOW> // pin 5
+    , <&gpio0 2  GPIO_ACTIVE_LOW> // pin 0
+    ;
+};
 
 &left_encoder {
     status = "okay";

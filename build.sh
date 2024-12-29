@@ -19,6 +19,17 @@ fi
 
 podman start zmk-build
 
+if [[ $1 == "reset" ]]; then
+  podman exec -itw /workspaces/zmk/app zmk-build west build -d build/settings_reset -b lotus58_ble_left -- -DSHIELD=settings_reset
+  cp ../zmk/app/build/settings_reset/zephyr/zmk.uf2 zmk-settings-reset.uf2
+  exit 0
+fi
+
+if [[ $1 == "left" ]] || [[ $1 == "right" ]]; then
+  side=$1
+  shift
+fi
+
 if [[ $1 == "left" ]]; then
   side="left"
   shift
