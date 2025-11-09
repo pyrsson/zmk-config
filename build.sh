@@ -2,6 +2,8 @@
 # Run this script from the zmk-config directory
 # Usage: ./build.sh [left] [ARGS...]
 
+set -exo pipefail
+
 if ! podman container exists zmk-build; then
   podman create -it \
     --security-opt label=disable \
@@ -32,14 +34,17 @@ if [[ $1 == "left" ]] || [[ $1 == "right" ]]; then
 fi
 
 if [[ -n $side ]]; then
-  podman exec -itw /workspaces/zmk/app zmk-build west build -d build/$side -b lotus58_ble_$side $@
+  if [[ $side = "left" ]]; then
+    left=1
+  fi
+  podman exec -itw /workspaces/zmk/app zmk-build west build -d build/$side -b lotus58_ble_$side ${left:+-S studio-rpc-usb-uart} $@ -- -DSHIELD=nice_view_adapter -DSHIELD=nice_view
   cp ../zmk/app/build/$side/zephyr/zmk.uf2 zmk-$side.uf2
 else
   podman exec -itw /workspaces/zmk/app zmk-build \
-    west build -d build/left -b lotus58_ble_left $@
+    west build -d build/left -b lotus58_ble_left -S studio-rpc-usb-uart $@ -- -DSHIELD=nice_view_adapter -DSHIELD=nice_view
   cp ../zmk/app/build/left/zephyr/zmk.uf2 zmk-left.uf2
 
   podman exec -itw /workspaces/zmk/app zmk-build \
-    west build -d build/right -b lotus58_ble_right $@
+    west build -d build/right -b lotus58_ble_right $@ -- -DSHIELD=nice_view_adapter -DSHIELD=nice_view
   cp ../zmk/app/build/right/zephyr/zmk.uf2 zmk-right.uf2
 fi
