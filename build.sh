@@ -4,23 +4,25 @@
 
 set -exo pipefail
 
+mkdir -p base
+
 if ! podman container exists zmk-build; then
   podman create -it \
     --security-opt label=disable \
     --workdir /workspaces/zmk-config \
     -v "$PWD":/workspaces/zmk-config \
+    -v "$PWD"/config:/workspaces/zmk-config/base/config \
     -p 3000:3000 \
     --name zmk-build \
     zmk-build \
     /bin/bash
 
   podman start zmk-build
-  podman exec -it zmk-build cp -R config base/config
   podman exec -itw /workspaces/zmk-config/base zmk-build bash -c 'test -d .west || west init -l config; west update --fetch-opt=--filter=tree:0; west zephyr-export'
 fi
 
 podman start zmk-build
-podman exec -itw /workspaces/zmk-config/base zmk-build west config build.cmake-args -- "-DZMK_CONFIG=/workspaces/zmk-config/base/config -DZMK_EXTRA_MODULES=/workspaces/zmk-config -DSHIELD=nice_view_adapter -DSHIELD=nice_view_battery"
+podman exec -itw /workspaces/zmk-config/base zmk-build west config build.cmake-args -- "-DZMK_CONFIG=/workspaces/zmk-config/base/config -DZMK_EXTRA_MODULES=/workspaces/zmk-config -DSHIELD=nice_view_battery"
 
 if [[ $1 == "reset" ]]; then
   podman exec -itw /workspaces/zmk-config/base zmk-build west build -s zmk/app -d build/settings_reset -b lotus58_ble_left -- -DSHIELD=settings_reset

@@ -23,7 +23,7 @@ config ZMK_SPLIT
 	default y
 
 config ZMK_STUDIO
-	default y
+	default n
 
 if USB
 

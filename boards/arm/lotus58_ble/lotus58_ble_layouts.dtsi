@@ -1,3 +1,4 @@
+// taken from the lily58 layout
 #include <physical_layouts.dtsi>
 
 / {
